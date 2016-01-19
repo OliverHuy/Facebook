@@ -1,5 +1,16 @@
-<%= @post.title %>
-<%= @post.body %>
-<%= link_to 'Edit', edit_post_path(@post) %>
-<%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: "Are you sure?"} %> <br>
-<%= link_to 'Back', root_path %>
+<table class="table table-striped table-hover">
+			  <tr>
+			    <td>Title</td>
+			    <td>Content</td> 
+			  </tr>
+			  
+			  <tr>
+			    <td><%= @post.title %></td>
+			    <td><%= @post.body %></td> 
+			    <td><%= link_to 'Edit', edit_post_path(@post), class:"btn btn-warning" %></td>
+			    <td><%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: "Are you sure?"}, class:"btn btn-danger" %></td>
+			  </tr>
+			 
+			
+</table>
+<%= link_to 'Back', root_path, class:"btn btn-success" %>
