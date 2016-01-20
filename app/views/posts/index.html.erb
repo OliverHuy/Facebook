@@ -3,6 +3,8 @@
 			  <tr>
 			    <td><h5>Title</h5></td>
 			    <td></td>
+			    <td></td>
+			    <td></td>
 			    <td><h5>User</h5></td>			     
 			  </tr>
 			  <% @posts.each do |post| %>
@@ -11,6 +13,8 @@
 			    <td class="date">
 			    	Submitted <%= time_ago_in_words (post.created_at)%>Ago
 			    </td>
+			    <td><%= post.like %> </td>
+			    <td><%= button_to 'Like' ,update_like_path(post) %></td>
 			    <td><%= post.user.email %></td>
 			    <td><%= link_to 'Show', post_path(post),class:"btn btn-info" %></td> 
 			  </tr>

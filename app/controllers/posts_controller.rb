@@ -11,6 +11,7 @@ before_action :authenticate_user!, except: [:index, :show]
 
 	def create
 		@post = Post.new(post_params)
+		@post.like = 0
 		@post.user_id = current_user.id
 		if @post.save
 			redirect_to root_path
@@ -40,6 +41,13 @@ before_action :authenticate_user!, except: [:index, :show]
 		@post = Post.find(params[:id])
 		@post.destroy
 		redirect_to root_path
+	end
+
+	def update_like
+		@post = Post.find(params[:id])
+		@post.like += 1
+		@post.save
+		redirect_to root_path	
 	end
 
 	private

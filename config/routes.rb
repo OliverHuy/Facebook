@@ -16,4 +16,6 @@ Rails.application.routes.draw do
 
   delete '/posts/:id' => 'posts#destroy'
 
+  post '/posts/:id' => 'posts#update_like', as: :update_like
+
 end
