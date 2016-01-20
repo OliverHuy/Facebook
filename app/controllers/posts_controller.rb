@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 before_action :authenticate_user!, except: [:index, :show] 
 
 	def index
-		@posts = Post.all
+		@posts = Post.all.order("created_at DESC")
 	end
 
 	def new
@@ -14,7 +14,7 @@ before_action :authenticate_user!, except: [:index, :show]
 		@post.like = 0
 		@post.user_id = current_user.id
 		if @post.save
-			redirect_to root_path
+			redirect_to post_path(@post)
 		else
 			render 'new'
 		end
@@ -22,6 +22,7 @@ before_action :authenticate_user!, except: [:index, :show]
 
 	def show
 		@post = Post.find(params[:id])
+		@comment = Comment.new
 	end
 
 	def edit
@@ -48,6 +49,17 @@ before_action :authenticate_user!, except: [:index, :show]
 		@post.like += 1
 		@post.save
 		redirect_to root_path	
+	end
+
+	def create_comment
+		@post = Post.find(params[:id])
+		@comment = Comment.new
+		@user = User.new
+		@comment.post_id = @post.id
+		@comment.user_id = current_user.id
+		@comment.content = params[:comment][:content]
+		@comment.save
+		redirect_to post_path(@post)
 	end
 
 	private

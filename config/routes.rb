@@ -18,4 +18,7 @@ Rails.application.routes.draw do
 
   post '/posts/:id' => 'posts#update_like', as: :update_like
 
+  post 'posts/:id/comment' => 'posts#create_comment', as: :comments
+
+
 end

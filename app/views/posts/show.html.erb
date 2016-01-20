@@ -11,8 +11,26 @@
 			    <td><%= link_to 'Edit', edit_post_path(@post), class:"btn btn-warning" %></td>
 			    <td><%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: "Are you sure?"}, class:"btn btn-danger" %></td>
 			    <% end %>
-			  </tr>
-			 
-			
+			  </tr>	
 </table>
 <%= link_to 'Back', root_path, class:"btn btn-success" %>
+
+
+<%= form_for @comment do |f| %>
+	<%= f.text_field :content %>
+	<%= f.submit "Comment" %> 
+<% end %>
+
+
+
+<table class="table table-striped table-hover">
+			  <tr>
+			    <td>Content</td>
+			  </tr>
+			  <% @post.comments.each do |c| %>
+			  <tr>
+			    <td><%= c.content %></td>
+			  </tr>
+			  <%end%>
+			
+</table>
