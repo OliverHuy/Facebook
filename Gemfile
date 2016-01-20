@@ -27,6 +27,8 @@ gem 'pry-nav'
 
 gem 'bootstrap-sass', '~> 3.3.6'
 
+gem 'devise', '~> 3.5', '>= 3.5.4'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
