@@ -32,20 +32,19 @@
 			    <td>User</td>
 			  </tr>
 			  <% @post.comments.each do |c| %>
-			  <tr>
-			    <td><%= c.content %></td>
-			    <td><p class="date">
-				            	Submitted <%= time_ago_in_words(c.created_at)%>Ago
-				            </p></td>
-			    <td><%= c.user.email %></td>
-			    
-			    
-			    <td><%= link_to 'Delete',delete_comments_path(c), method: :delete, data: {confirm: "sure?"} %></td>
-			    
-			    <td></td>
-			    <%end%>
+				  <tr>
+				    <td><%= c.content %></td>
+				    <td><p class="date">
+					            	Submitted <%= time_ago_in_words(c.created_at)%>Ago
+					            </p></td>
+				    <td><%= c.user.email %></td>
+				    <% if current_user.id == c.user_id %>
+				    	
+				    	<td><%= link_to 'Delete',delete_comments_path(c), method: :delete, data: {confirm: "sure?"} %></td>
+				    
+				    <%end%>
 			  </tr>
-			  
+			  <%end%>
 			
 </table>
 

@@ -18,9 +18,9 @@ Rails.application.routes.draw do
 
   post '/posts/:id' => 'posts#update_like', as: :update_like
 
-  post 'posts/:id/comment' => 'posts#create_comment', as: :comments
+  post '/comments/:id/comment' => 'comments#create_comment', as: :comments
 
-  delete '/comments/:id' => 'posts#delete_comment', as: :delete_comments
+  delete '/comments/:id' => 'comments#delete_comment', as: :delete_comments
 
 
 end

@@ -52,23 +52,6 @@ before_action :authenticate_user!, except: [:index, :show]
 		redirect_to root_path	
 	end
 
-	def create_comment
-		@post = Post.find(params[:id])
-		@comment = Comment.new
-		@user = User.new
-		@comment.post_id = @post.id
-		@comment.user_id = current_user.id
-		@comment.content = params[:comment][:content]
-		@comment.save
-		redirect_to post_path(@post)
-	end
-
-	def delete_comment
-		@comment = Comment.find(params[:id])
-		post_id = @comment.post_id
-		@comment.destroy
-		redirect_to post_path(post_id)
-	end
 
 	private
 
