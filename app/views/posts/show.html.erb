@@ -1,4 +1,9 @@
-<table class="table table-striped table-hover">
+
+<% if current_user == @post.user %>
+			    <td><%= link_to 'Edit', edit_post_path(@post), class:"btn btn-warning" %></td>
+			    <td><%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: "Are you sure?"}, class:"btn btn-danger" %></td>
+<% end %>
+			    <table class="table table-striped table-hover">
 			  <tr>
 			    <td>Title</td>
 			    <td>Content</td> 
@@ -7,10 +12,7 @@
 			  <tr>
 			    <td><%= @post.title %></td>
 			    <td><%= @post.body %></td> 
-			    <% if current_user == @post.user %>
-			    <td><%= link_to 'Edit', edit_post_path(@post), class:"btn btn-warning" %></td>
-			    <td><%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: "Are you sure?"}, class:"btn btn-danger" %></td>
-			    <% end %>
+			    
 			  </tr>	
 </table>
 <%= link_to 'Back', root_path, class:"btn btn-success" %>
@@ -26,15 +28,24 @@
 <table class="table table-striped table-hover">
 			  <tr>
 			    <td>Content</td>
+			    <td></td>
 			    <td>User</td>
 			  </tr>
 			  <% @post.comments.each do |c| %>
 			  <tr>
 			    <td><%= c.content %></td>
+			    <td><p class="date">
+				            	Submitted <%= time_ago_in_words(c.created_at)%>Ago
+				            </p></td>
 			    <td><%= c.user.email %></td>
+			    
+			    
+			    <td><%= link_to 'Delete',delete_comments_path(c), method: :delete, data: {confirm: "sure?"} %></td>
+			    
 			    <td></td>
+			    <%end%>
 			  </tr>
-			  <%end%>
+			  
 			
 </table>
 

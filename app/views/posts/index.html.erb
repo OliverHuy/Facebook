@@ -5,15 +5,19 @@
             <div class="thumbnail">
 		            <div class="embed-responsive embed-responsive-4by3">
 				            <p><h5>Title</h5></p>
-				            <p class="p"><h3><%= post.title %></h3></p>
+				            <p class="p"><h3><%= link_to post.title, post_path(post) %></h3></p>
 				            <p>By: </p>
 				            <p></p>
 				            <h5><%= post.user.email %></h5>
 		            </div>
 
 		            <div class="caption">
+		            <p class="date">
+				            	Submitted <%= time_ago_in_words(post.created_at)%>Ago
+				            </p>
 		                <p><%= post.like %></p>
-		                <p><%= button_to 'Like' ,update_like_path(post) %><%= link_to "Show", post_path(post), class: "btn btn-primary" %> </p>
+		                <p><%= button_to 'Like' ,update_like_path(post) %> </p>
+		                <p><%= post.comments.count %><%= link_to 'Comments', post_path(post)%></p>
 		        	</div>
             </div>
             

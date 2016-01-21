@@ -63,6 +63,13 @@ before_action :authenticate_user!, except: [:index, :show]
 		redirect_to post_path(@post)
 	end
 
+	def delete_comment
+		@comment = Comment.find(params[:id])
+		post_id = @comment.post_id
+		@comment.destroy
+		redirect_to post_path(post_id)
+	end
+
 	private
 
 	def post_params

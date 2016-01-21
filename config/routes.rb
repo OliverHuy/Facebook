@@ -20,5 +20,7 @@ Rails.application.routes.draw do
 
   post 'posts/:id/comment' => 'posts#create_comment', as: :comments
 
+  delete '/comments/:id' => 'posts#delete_comment', as: :delete_comments
+
 
 end
